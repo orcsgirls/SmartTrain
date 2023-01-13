@@ -29,7 +29,7 @@ from intelino.trainlib.messages import (
 
 
 def main():
-    trains = TrainScanner().get_trains(count=3)
+    trains = TrainScanner().get_trains(count=2)
     # shared variable that represents the state of the pass
     pass_used_by = None
 
