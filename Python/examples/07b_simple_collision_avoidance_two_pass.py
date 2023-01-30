@@ -46,7 +46,7 @@ def main():
             color = self.passes[index].snap
             waiting_trains = self.passes[index].trains_waiting
             if len(waiting_trains)>0:
-                waiting_train = self.passes[index].trains_waiting.pop()
+                waiting_train = self.passes[index].trains_waiting.pop(0)
             return waiting_train, color
         
         def pass_info(self):

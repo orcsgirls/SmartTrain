@@ -86,7 +86,7 @@ class SharedState:
         # Note: in this implementation this wouldn't need to be shared
         self.critical_section = {
             Color.YELLOW: SectionInfo(SectionState.FREE, -1),
-            Color.MAGENTA: SectionInfo(SectionState.FREE, -1),
+            #Color.MAGENTA: SectionInfo(SectionState.FREE, -1),
         }
 
     def dispose(self):
@@ -99,7 +99,7 @@ class LocalState:
         # train-specific critical section state
         self.section: dict[Color, TrainSectionState] = {
             Color.YELLOW: TrainSectionState.NONE,
-            Color.MAGENTA: TrainSectionState.NONE,
+            #Color.MAGENTA: TrainSectionState.NONE,
         }
 
 
@@ -131,7 +131,7 @@ class SharedLogic:
         Note: not thread-safe
         """
         section_info = self.shared_state.critical_section[msg.section_color]
-
+        
         # verify each request, update sections' state and notify all trains
         # through the stream with a response
         if msg.request == SectionRequest.ENTER:
@@ -209,6 +209,7 @@ async def collision_avoidance(train: Train, index: int, shared_state: SharedStat
         state.section[color] = TrainSectionState.NONE
 
     async def handle_response(msg: MessageResponse):
+        print(msg.response,msg.train_id,msg.section_color,index)
         if msg.train_id == index:
             # handle all responses addressed to us
             if msg.response == SectionResponse.ENTER_APPROVED:
@@ -264,7 +265,7 @@ async def collision_avoidance(train: Train, index: int, shared_state: SharedStat
 
 async def main():
     # connect to a few trains
-    trains = await TrainScanner(timeout=4.0).get_trains(at_most=3)
+    trains = await TrainScanner(timeout=10.0).get_trains(at_most=3)
     shared_state = SharedState()
     shared_logic = SharedLogic(shared_state)
 
