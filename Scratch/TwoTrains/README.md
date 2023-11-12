@@ -23,9 +23,9 @@ color sequences mark the entry to each pass. Here is the track layout
 
 ### `WagonExchange.sb3`
 
-Here two trains exchange a wagon. This exampele is adaptec from the 
+Here two trains exchange a wagon. This exampele is adapted from the 
 [Intelino Python examples](https://github.com/intelino-code/intelino-trainlib-py-examples/tree/master/examples). The code is similar to the
-single train version except on completing the drop, the code signals the otehr train to pick it up. Here is the track
+single train version except on completing the drop, the code signals the other train to pick it up. Here is the track
 layout to run the example.
 
 <img src="https://github.com/orcsgirls/SmartTrain/blob/master/Scratch/TwoTrains/WagonExchange.png?raw=true" width="600">
